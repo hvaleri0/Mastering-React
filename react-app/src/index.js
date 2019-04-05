@@ -1,6 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
+//var -> Function = never use this!
+//let -> Block = only use when you need to reasign the variable
+//const -> Block = alway use this
 
-const element = <h1>Hello World</h1>;
-
-ReactDOM.render(element, document.getElementById("root"));
+function sayHello() {
+  for (const i = 0; i < 5; i++) {
+    console.log("var of i:", i);
+  }
+  console.log("var of i:", i);
+}
+sayHello();
