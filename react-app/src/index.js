@@ -1,11 +1,12 @@
-//var -> Function = never use this!
-//let -> Block = only use when you need to reasign the variable
-//const -> Block = alway use this
+const person = {
+  name: "Mosh",
+  walk() {},
+  talk() {}
+};
 
-function sayHello() {
-  for (const i = 0; i < 5; i++) {
-    console.log("var of i:", i);
-  }
-  console.log("var of i:", i);
-}
-sayHello();
+person.talk();
+person.name = "s";
+person["name"] = "john";
+
+const targetMember = "name";
+person[targetMember.value] = "John";
