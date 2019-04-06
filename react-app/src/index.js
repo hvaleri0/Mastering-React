@@ -1,23 +1,25 @@
-const square = function(number) {
-  return number * number;
+const person = {
+  talk() {
+    setTimeout(function() {
+      console.log("this", this);
+    }, 1000);
+  }
 };
+person.talk(); // returns the window object Wrong we want the Person Object
 
-const square2 = number => number * number;
+const person1 = {
+  talk() {
+    const self = this;
+    setTimeout(function() {
+      console.log("self", self);
+    }, 1000);
+  }
+};
+person1.talk(); // old school way, assign self to this
 
-console.log(square(5));
-console.log(square2(5));
-
-const jobs = [
-  { id: 1, isActive: true },
-  { id: 2, isActive: true },
-  { id: 3, isActive: false }
-];
-
-const activeJobs = jobs.filter(function(job) {
-  return job.isActive;
-});
-
-const activeJobsR = jobs.filter(job => job.isActive);
-
-console.log(activeJobs);
-console.log(activeJobsR);
+const person2 = {
+  talk() {
+    setTimeout(() => console.log("this", this), 1000);
+  }
+};
+person2.talk(); // The Cleanest way! arrow functions dont rebind the this
