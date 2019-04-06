@@ -1,13 +1,12 @@
-const address = {
-  street: "",
-  city: "",
-  country: ""
-};
+// const first = [1, 2, 3];
+// const second = [4, 5, 6];
 
-// const street = address.street;
-// const city = address.city;
-// const country = address.country;
+// const combined = first.concat(second);
+// const combined1 = [...first, "a", ...second, "b"];
 
-const { street, city, country } = address; //same as above !
+const first = { name: "Hector" };
+const second = { job: "Product Owner" };
+const combined = { ...first, ...second, ownership: "real-estate" };
 
-const { street: st } = address; // same as const st = address.st
+console.log(combined);
+//console.log(combined1);
