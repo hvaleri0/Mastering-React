@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  // state = {
-  //   value: this.props.counter.value
-  // };
-
-  // handleIncrement = product => {
-  //   console.log(product);
-  //   this.setState({ value: this.state.value + 1 });
-  // };
-
   render() {
     return (
       <div>
