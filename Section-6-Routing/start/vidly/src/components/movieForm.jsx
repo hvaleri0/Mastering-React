@@ -67,7 +67,7 @@ class MovieForm extends Form {
   };
 
   render() {
-    const { match, history } = this.props;
+    //const { match, history } = this.props;
 
     return (
       <div>
