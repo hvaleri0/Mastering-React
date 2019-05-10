@@ -39,10 +39,23 @@ class App extends Component {
     this.setState({ posts });
 
     try {
-      await axios.delete(`${apiEndpoint}/${post.id}`);
-      throw new Error();
+      //await axios.delete(`${apiEndpoint}s/${post.id}`); //expected error
+      //await axios.delete(`s${apiEndpoint}/${post.id}`); // unexpected error
+      await axios.delete(`${apiEndpoint}/${post.id}`); //normal
+      //throw new Error();
     } catch (ex) {
-      alert("Something failed while deleting your post!");
+      //Expected (404: not found, 400: bad request) - CLIENT ERRORS
+      //   - Display a specific error message
+      if (ex.response && ex.response.status === 404)
+        alert("This post has already been deleted.");
+      //Unexpected(network Down, Server Down, Db Down, Bug)
+      //   - Log them
+      //   - Display a generic and friendly error message to the user
+      else {
+        console.log("logging the error", ex);
+        alert("an unexpected error occured.");
+      }
+
       this.setState({ posts: originalPosts });
     }
   };
