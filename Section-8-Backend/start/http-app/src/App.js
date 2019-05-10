@@ -26,14 +26,19 @@ class App extends Component {
     post.title = "Updated";
     await axios.put(`${apiEndpoint}/${post.id}`, post);
 
-    const posts = [...this.state.posts];
-    const index = posts.indexOf(post);
-    posts[index] = { ...post };
+    const posts = this.state.posts.filter(p => p.id !== post.id);
     this.setState({ posts });
   };
 
-  handleDelete = post => {
+  handleDelete = async post => {
     console.log("Delete", post);
+
+    await axios.delete(`${apiEndpoint}/${post.id}`);
+
+    const posts = [...this.state.posts];
+    const index = posts.indexOf(post);
+    delete posts[index];
+    this.setState({ posts });
   };
 
   render() {
