@@ -40,9 +40,9 @@ class App extends Component {
     this.setState({ posts });
 
     try {
-      await http.delete(`${config.apiEndpoint}s/${post.id}`); //expected error
+      //await http.delete(`${config.apiEndpoint}s/${post.id}`); //expected error
       //await http.delete(`s${config.apiEndpoint}/${post.id}`); // unexpected error
-      //await http.delete(`${config.apiEndpoint}/${post.id}`); //normal
+      await http.delete(`${config.apiEndpoint}/${post.id}`); //normal
     } catch (ex) {
       console.log("HANDLE DELETE CATCH BLOCK");
       //Expected (404: not found, 400: bad request) - CLIENT ERRORS
