@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import http from "./services/httpservice";
+import config from "./config.json";
 import "./App.css";
-
-const apiEndpoint = "http://jsonplaceholder.typicode.com/posts";
 
 class App extends Component {
   state = {
@@ -10,13 +9,13 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const { data: posts } = await http.get(apiEndpoint);
+    const { data: posts } = await http.get(config.apiEndpoint);
     this.setState({ posts });
   }
 
   handleAdd = async () => {
     const obj = { title: "a", body: "b" };
-    const { data: post } = await http.post(apiEndpoint, obj);
+    const { data: post } = await http.post(config.apiEndpoint, obj);
 
     const posts = [post, ...this.state.posts];
     this.setState({ posts });
@@ -24,7 +23,7 @@ class App extends Component {
 
   handleUpdate = async post => {
     post.title = "Updated";
-    await http.put(`${apiEndpoint}/${post.id}`, post);
+    await http.put(`${config.apiEndpoint}/${post.id}`, post);
 
     const posts = [...this.state.posts];
     const index = posts.indexOf(post);
@@ -39,9 +38,9 @@ class App extends Component {
     this.setState({ posts });
 
     try {
-      //await http.delete(`${apiEndpoint}s/${post.id}`); //expected error
-      //await http.delete(`s${apiEndpoint}/${post.id}`); // unexpected error
-      await http.delete(`${apiEndpoint}/${post.id}`); //normal
+      //await http.delete(`${config.apiEndpoint}s/${post.id}`); //expected error
+      //await http.delete(`s${config.apiEndpoint}/${post.id}`); // unexpected error
+      await http.delete(`${config.apiEndpoint}/${post.id}`); //normal
     } catch (ex) {
       console.log("HANDLE DELETE CATCH BLOCK");
       //Expected (404: not found, 400: bad request) - CLIENT ERRORS
