@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { ToastContainer } from "react-toastify";
 import http from "./services/httpservice";
 import config from "./config.json";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 class App extends Component {
@@ -38,9 +40,9 @@ class App extends Component {
     this.setState({ posts });
 
     try {
-      //await http.delete(`${config.apiEndpoint}s/${post.id}`); //expected error
+      await http.delete(`${config.apiEndpoint}s/${post.id}`); //expected error
       //await http.delete(`s${config.apiEndpoint}/${post.id}`); // unexpected error
-      await http.delete(`${config.apiEndpoint}/${post.id}`); //normal
+      //await http.delete(`${config.apiEndpoint}/${post.id}`); //normal
     } catch (ex) {
       console.log("HANDLE DELETE CATCH BLOCK");
       //Expected (404: not found, 400: bad request) - CLIENT ERRORS
@@ -58,6 +60,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <ToastContainer />
         <button className="btn btn-primary" onClick={this.handleAdd}>
           Add
         </button>
